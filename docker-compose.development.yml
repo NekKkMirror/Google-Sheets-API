@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - APP_PORT=${APP_PORT}
+      - GOOGLE_SHEET_ID=${GOOGLE_SHEET_ID}
+      - API_TOKEN=${API_TOKEN}
+      - API_URL=${API_TOKEN}
+    volumes:
+      - .:/app
+      - ./node_modules:/app/node_modules
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    command: npm run start:dev
